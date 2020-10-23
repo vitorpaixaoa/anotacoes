@@ -2,12 +2,15 @@ const { app, BrowserWindow } = require("electron");
 
 
 function createWindow(){
-    const mainWindow;
-    mainWindow = new BrowserWindow({
+    const mainWindow = new BrowserWindow({
         width: 800 ,
         height: 600
     });
 
-    mainWindow.loadFile(__dirname + '/scr/index.html')
+    mainWindow.loadURL(__dirname + "./src/index.html")
+    mainWindow.on('exit', function(){
+        mainWindow = null;
+    })
 
 }
+app.on('ready', createWindow );
