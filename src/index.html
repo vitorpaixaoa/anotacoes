@@ -14,19 +14,23 @@
                 <p><span class="nav-link bg-dark text-secondary">ANOTAÇÕES</span></p>
 
                 <ul class="nav nav-pills flex-column">
-                    <li class="nav-item"><a href="" class="nav-link bg-success text-white">Nova Anotação!</a></li>
-                    <li class="nav-item"><a href="" class="nav-link text-white">item 1</a></li>
-                    <li class="nav-item"><a href="" class="nav-link text-white">item 2</a></li> 
-                    <li class="nav-item"><a href="" class="nav-link text-white">item 3</a></li> 
+                    <li class="nav-item"><a href="" class="nav-link bg-success text-white" @click.prevent="create()">Nova Anotação!</a></li>
+                    <li class="nav-item" v-for='note,index in notes'>
+                        <a href="" class="nav-link text-white" @click.prevent="select(index)">{{ note.content}}</a>
+                    </li>
                 </ul>   
             </div>
             <div class="col"> 
-                <textarea placeholder="Insira sua anotação aqui!">Anotações</textarea>  </div>
+                <textarea @keyup="save()" ref="textarea" placeholder="digite seu texto aqui..." >{{(active !== null) ? notes[active].content :""}}</textarea></div>
+                
         </div>
         
     </div>
     <div id="footer" class="bg-info">
         <strong>Dica: apague o conteúdo para excluir uma anotação </strong>
     </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../node_modules/lodash/lodash.js"></script>
+    <script src="./app.js"></script>
 </body>
 </html>
